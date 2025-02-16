@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="stylesheet" href="style.css">
-    
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Medical Search</title>
+    <title>Smart Medical</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>Smart Medical Search</h1>
-        <input type="text" id="searchBox" placeholder="আপনার লক্ষণ লিখুন...">
-        <button onclick="searchDisease()">সার্চ করুন</button>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <main id="result"></main>
+
+    <section id="home">
+        <div class="hero">
+            <h1>Medical Assistance at Your Fingertips</h1>
+            <p>Find the best diagnosis and treatment options.</p>
+            <input type="text" id="searchSymptoms" placeholder="Search Symptoms..." oninput="searchSymptoms()">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We provide accurate medical information and guidance based on your symptoms.</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-item">
+                <h3>Symptom Checker</h3>
+                <p>Identify your illness based on symptoms and get treatment options.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Get in touch for consultations or more information.</p>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Smart Medical Search</p>
+        <p>&copy; 2025 Medical Assistant. All Rights Reserved.</p>
     </footer>
-</body><script defer src="script.js"></script>
+
+    <script src="script.js"></script>
+</body>
+    </html>
     
-</html>
