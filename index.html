@@ -1,60 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Medical</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="home">
         <div class="hero">
-            <h1>Medical Assistance at Your Fingertips</h1>
-            <p>Find the best diagnosis and treatment options.</p>
-            <input type="text" id="searchSymptoms" placeholder="Search Symptoms..." oninput="searchSymptoms()">
+            <h1 class="animated-title">Smart Medical</h1>
+            <p>আপনার নির্ভরযোগ্য ডিজিটাল হেলথ সহায়ক</p>
         </div>
+    </header>
+    
+    <div id="google_translate_element"></div>
+    
+    <section id="home">
+        <h1>মেডিক্যাল সহায়তা</h1>
+        <p>আপনার লক্ষণ লিখুন এবং সম্ভাব্য রোগ সম্পর্কে জানুন</p>
+        <input type="text" id="searchSymptoms" placeholder="আপনার লক্ষণ লিখুন...">
+        <button onclick="searchSymptoms()">সার্চ করুন</button>
+        <div id="results"></div>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>We provide accurate medical information and guidance based on your symptoms.</p>
-        </div>
-    </section>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'bn', includedLanguages: 'en,hi,fr,es,ar,zh'}, 'google_translate_element');
+        }
 
-    <section id="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="service-item">
-                <h3>Symptom Checker</h3>
-                <p>Identify your illness based on symptoms and get treatment options.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Get in touch for consultations or more information.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Medical Assistant. All Rights Reserved.</p>
-    </footer>
-
+        document.addEventListener("DOMContentLoaded", function () {
+            const firebaseConfig = {
+                apiKey: "YOUR_API_KEY",
+                authDomain: "YOUR_AUTH_DOMAIN",
+                databaseURL: "YOUR_DATABASE_URL",
+                projectId: "YOUR_PROJECT_ID",
+                storageBucket: "YOUR_STORAGE_BUCKET",
+                messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+                appId: "YOUR_APP_ID"
+            };
+            
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            const database = firebase.database();
+        });
+    </script>
     <script src="script.js"></script>
 </body>
-    </html>
-    
+</html>
