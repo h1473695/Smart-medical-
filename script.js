@@ -56,3 +56,47 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBox = document.createElement("input");
+    searchBox.type = "text";
+    searchBox.placeholder = "আপনার লক্ষণ লিখুন...";
+    searchBox.style.cssText = "width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;";
+
+    const resultBox = document.createElement("div");
+    resultBox.style.cssText = "padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9; display: none;";
+
+    document.body.prepend(searchBox);
+    document.body.prepend(resultBox);
+
+    searchBox.addEventListener("keypress", async function (event) {
+        if (event.key === "Enter") {
+            const symptoms = searchBox.value.trim();
+            if (symptoms.length > 3) {
+                resultBox.style.display = "block";
+                resultBox.innerHTML = "অনুসন্ধান করা হচ্ছে...";
+
+                try {
+                    const response = await fetch(`https://api.disease.info/v1/disease?symptom=${encodeURIComponent(symptoms)}`);
+                    const data = await response.json();
+
+                    if (data.error) {
+                        resultBox.innerHTML = "কোনো তথ্য পাওয়া যায়নি। দয়া করে সঠিকভাবে লিখুন।";
+                    } else {
+                        let resultHTML = `<strong>সম্ভাব্য রোগ:</strong><br>`;
+                        data.forEach(disease => {
+                            resultHTML += `<b>${disease.name}</b>: ${disease.description}<br>`;
+                        });
+                        resultBox.innerHTML = resultHTML;
+                    }
+                } catch (error) {
+                    resultBox.innerHTML = "ডাটা আনতে সমস্যা হচ্ছে, আবার চেষ্টা করুন।";
+                }
+            } else {
+                resultBox.style.display = "block";
+                resultBox.innerHTML = "অনুগ্রহ করে আরও বিস্তারিত লিখুন।";
+            }
+        }
+    });
+});
+            
